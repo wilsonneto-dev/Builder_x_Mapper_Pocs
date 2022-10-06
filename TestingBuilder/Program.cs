@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using TestingBuilder;
 
-var upsaertDto = new UpsertShipmentDto(
+var upsertDto = new UpsertShipmentDto(
     Guid.NewGuid(), 
     "Active", 
     DateTime.Now, 
@@ -14,11 +14,11 @@ var upsaertDto = new UpsertShipmentDto(
 // approach #1 -> passing the builder to maps
 var builder = new RegisterShipmentInputDtoBuilder();
 
-ConsignorMap.Map(upsaertDto.Retailer, builder);
-ConsigneeMap.Map(upsaertDto.Shopper, builder);
-LineItemsMap.Map(upsaertDto.Items, builder);
+ConsignorMap.Map(upsertDto.Retailer, builder);
+ConsigneeMap.Map(upsertDto.Shopper, builder);
+LineItemsMap.Map(upsertDto.Items, builder);
 
 var carrierDto = builder.GetResult();
 
-// ------------------
-
+// approach #2 -> using the builder inside one unique mapper, for simple mappers
+var dto = CarrierDtoMapper.Map(upsertDto);

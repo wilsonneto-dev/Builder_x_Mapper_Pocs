@@ -8,23 +8,33 @@ public sealed class RegisterShipmentInputDtoBuilder
 
     public RegisterShipmentInputDto GetResult() => _result;
 
-    public void WithConsignor(string ConsignorName, string ConsignorAddress, string ConsignorReference)
+    public RegisterShipmentInputDtoBuilder WithConsignor(string ConsignorName, string ConsignorAddress, string ConsignorReference)
     {
         _result.ConsignorName = ConsignorName;
         _result.ConsignorAddress = ConsignorAddress;
         _result.ConsignorReference = ConsignorReference;
+        return this;
     }
 
-    public void WithConsignee(string ConsigneeName, string ConsigneeAddress, string ConsigneeReference)
+    public RegisterShipmentInputDtoBuilder WithConsignee(string ConsigneeName, string ConsigneeAddress, string ConsigneeReference)
     {
         _result.ConsigneeName = ConsigneeName;
         _result.ConsigneeReference = ConsigneeReference;
         _result.ConsigneeAddress = ConsigneeAddress;
+        return this;
     }
 
-    public void WithGeneralData(decimal insuranceValue) => _result.InsuranceValue = insuranceValue;
+    public RegisterShipmentInputDtoBuilder WithGeneralData(decimal insuranceValue)
+    {
+        _result.InsuranceValue = insuranceValue;
+        return this;
+    }
 
-    public void WithLineItems(List<string> items) => _result.LineItems = items;
+    public RegisterShipmentInputDtoBuilder WithLineItems(List<string> items)
+    {
+        _result.LineItems = items;
+        return this;
+    }
 }
 
 internal static class ConsignorMap
